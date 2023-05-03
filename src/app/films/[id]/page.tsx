@@ -1,4 +1,5 @@
 import NavButton from '@/app/components/NavButton';
+import { baseUrl } from '@/consts/base-url';
 
 export const metadata = {
   title: `Description star wars film`,
@@ -12,7 +13,7 @@ interface Film {
 }
 
 const getFilm = async (filmId: string) => {
-  const res = await fetch(`https://swapi.dev/api/films/${filmId}`);
+  const res = await fetch(`${baseUrl}films/${filmId}`);
   const data = await res.json();
   return data as Film;
 };

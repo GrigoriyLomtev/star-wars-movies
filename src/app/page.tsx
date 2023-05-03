@@ -1,3 +1,4 @@
+import { baseUrl } from '@/consts/base-url';
 import FilmCard, { IFilmCard } from './components/FilmCard';
 
 export interface Films {
@@ -5,7 +6,7 @@ export interface Films {
 }
 
 async function getFilms() {
-  const response = await fetch('https://swapi.dev/api/films/', {
+  const response = await fetch(`${baseUrl}films/`, {
     cache: 'no-cache',
   });
   const data = await response.json();
