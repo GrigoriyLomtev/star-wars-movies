@@ -6,11 +6,15 @@ export interface Films {
 }
 
 async function getFilms() {
-  const response = await fetch(`${baseUrl}films/`, {
-    cache: 'no-cache',
-  });
-  const data = await response.json();
-  return data as Films;
+  try {
+    const response = await fetch(`${baseUrl}films/`, {
+      cache: 'no-cache',
+    });
+    const data = await response.json();
+    return data as Films;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 const Home = async () => {

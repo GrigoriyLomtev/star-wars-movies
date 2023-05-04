@@ -13,13 +13,20 @@ interface Film {
 }
 
 const getFilm = async (filmId: string) => {
-  const res = await fetch(`${baseUrl}films/${filmId}`);
-  const data = await res.json();
-  return data as Film;
+  try {
+    const res = await fetch(`${baseUrl}films/${filmId}`);
+    const data = await res.json();
+    return data as Film;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const FilmDescriptionPage = async ({ params }: { params: { id: string } }) => {
   const film = await getFilm(params.id);
+  if (!film) {
+    return <div>Film not uploaded...</div>;
+  }
   return (
     <div className="flex">
       <div className="mx-auto mt-10">
